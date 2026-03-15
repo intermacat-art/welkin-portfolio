@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>洪任玄 Welkin Hung</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700;900&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans TC', sans-serif; background: #f7f7f5; color: #222; line-height: 1.8; }
+
+    /* ===== TOP HEADER ===== */
+    .top-header {
+        background: #1a1a1a; color: #fff;
+        padding: 32px 32px 0; text-align: center;
+    }
+    .top-header h1 { font-size: 24px; font-weight: 900; }
+    .top-header .sub { font-size: 13px; color: #aaa; margin-top: 2px; }
+    .top-header .contact { font-size: 12px; color: #666; margin-top: 8px; }
+
+    /* ===== TABS ===== */
+    .tabs {
+        display: flex; justify-content: center; gap: 0;
+        background: #1a1a1a; padding: 20px 0 0;
+    }
+    .tab-btn {
+        padding: 10px 32px; font-size: 14px; font-weight: 700;
+        border: none; background: transparent; color: #666;
+        cursor: pointer; border-bottom: 3px solid transparent;
+        transition: all 0.2s; font-family: inherit;
+    }
+    .tab-btn:hover { color: #ccc; }
+    .tab-btn.active { color: #fff; border-bottom-color: #e67e22; }
+
+    /* ===== CONTENT ===== */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .page { max-width: 860px; margin: 0 auto; padding: 32px 24px 60px; }
+
+    /* ===============================
+       RESUME STYLES
+       =============================== */
+    .r-section { background: #2d3436; color: #fff; font-size: 15px; font-weight: 700; padding: 7px 14px; margin: 24px 0 12px; border-radius: 4px; }
+    .r-summary { font-size: 14px; padding: 0 4px; }
+    .r-card { border: 1px solid #e0e0e0; border-left: 4px solid #e67e22; border-radius: 4px; padding: 14px 16px; margin-bottom: 14px; background: #fff; }
+    .r-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; flex-wrap: wrap; gap: 8px; }
+    .r-card-title { font-size: 15px; font-weight: 700; color: #2c3e50; }
+    .r-card-date { background: #f1f2f6; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 800; border: 1px solid #ddd; }
+    .r-metric { display: inline-block; background: #fef5eb; border: 1px solid #f0d0a0; padding: 2px 10px; border-radius: 4px; font-size: 12px; color: #e67e22; font-weight: 600; margin: 2px; }
+    .r-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 4px; }
+    .r-table td { padding: 8px 10px; border: 1px solid #e0e0e0; vertical-align: top; }
+    .r-table tr:nth-child(odd) td { background: #fffaf5; }
+    .r-table .need { width: 40%; font-weight: 600; color: #2c3e50; }
+    .r-table .have { color: #444; }
+    .r-skills { padding: 0 4px; }
+    .r-skill-label { font-weight: 700; font-size: 13px; margin-top: 6px; }
+    .r-tag { display: inline-block; background: #f1f2f6; border: 1px solid #dfe6e9; padding: 2px 10px; margin: 2px; border-radius: 4px; font-size: 12px; }
+    .r-tag.hl { background: #fef5eb; border-color: #f0d0a0; color: #e67e22; font-weight: 600; }
+    ul { margin: 5px 0; padding-left: 20px; font-size: 13.5px; }
+    li { margin-bottom: 4px; }
+
+    /* ===============================
+       PORTFOLIO STYLES
+       =============================== */
+    .p-section {
+        font-size: 12px; font-weight: 700; letter-spacing: 3px;
+        text-transform: uppercase; color: #999;
+        margin: 36px 0 16px; padding-left: 4px;
+    }
+    .p-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 640px) { .p-grid { grid-template-columns: 1fr; } }
+    .p-card {
+        background: #fff; border: 1px solid #e8e8e6; border-radius: 12px;
+        padding: 22px 24px; transition: transform 0.2s, box-shadow 0.2s;
+        opacity: 0; transform: translateY(16px); animation: fadeUp 0.5s ease forwards;
+    }
+    .p-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+    .p-card:nth-child(1) { animation-delay: 0.05s; }
+    .p-card:nth-child(2) { animation-delay: 0.1s; }
+    .p-card:nth-child(3) { animation-delay: 0.15s; }
+    .p-card:nth-child(4) { animation-delay: 0.2s; }
+    .p-card:nth-child(5) { animation-delay: 0.25s; }
+    .p-card:nth-child(6) { animation-delay: 0.3s; }
+    .p-card:nth-child(7) { animation-delay: 0.35s; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .p-full { grid-column: 1 / -1; }
+    .p-card .type { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #e67e22; margin-bottom: 6px; }
+    .p-card h3 { font-size: 16px; font-weight: 700; color: #111; margin-bottom: 6px; }
+    .p-card .desc { font-size: 13px; color: #555; line-height: 1.7; }
+    .p-card .result { font-size: 13px; color: #e67e22; font-weight: 600; margin-top: 8px; }
+    .p-card .role { font-size: 12px; color: #999; margin-top: 8px; }
+    .p-card .tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 4px; }
+    .p-tag { font-size: 10px; padding: 2px 8px; border: 1px solid #e0e0e0; border-radius: 3px; color: #777; }
+
+    .footer { text-align: center; font-size: 12px; color: #bbb; margin-top: 40px; padding-top: 20px; border-top: 1px solid #e8e8e6; }
+</style>
+</head>
+<body>
+
+<div class="top-header">
+    <h1>洪任玄 Welkin Hung</h1>
+    <div class="sub">數位行銷 ｜ 品牌合作企劃 ｜ 網紅行銷 ｜ 社群經營</div>
+    <div class="contact">welkinhung7797@gmail.com ｜ 0920-423-236 ｜ 新北市汐止區</div>
+</div>
+<div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('resume')">履歷</button>
+    <button class="tab-btn" onclick="switchTab('portfolio')">作品集</button>
+</div>
+
+<!-- ====================================================================
+     TAB 1: 履歷
+     ==================================================================== -->
+<div id="tab-resume" class="tab-content active">
+<div class="page">
+
+    <div class="r-section">專業摘要</div>
+    <div class="r-summary">
+        10 年以上數位媒體與社群行銷經驗。曾任 Yahoo 電競台灣主編，<b>帶領 5 人編輯團隊</b>從零建立社群平台，
+        負責 Monster Energy、肯德基、Red Bull 等品牌的行銷企劃與內容規劃。
+        具備口碑行銷、社群行銷、網紅行銷的完整實戰經歷，熟悉策略提案、專案執行到成效追蹤的全流程。
+        近年深度運用 AI 工具提升內容產能與提案效率，能快速產出高品質的策略簡報與創意提案。
+    </div>
+
+    <div class="r-section">職缺需求 × 我的經驗</div>
+    <table class="r-table">
+        <tr><td class="need">品牌合作企劃與執行</td><td class="have">Yahoo 電競時期負責 Monster Energy、統一巷口乾麵、肯德基、Red Bull 等品牌行銷企劃</td></tr>
+        <tr><td class="need">客戶關係維護 / 媒體策略建議</td><td class="have">長期維護品牌客戶關係，針對不同品牌需求提供客製化社群行銷方案</td></tr>
+        <tr><td class="need">口碑行銷 / 社群行銷 / 網紅行銷</td><td class="have">Yahoo 電競社群經營（口碑）、虎子 VTuber 策略（網紅）、多平台內容行銷（社群）</td></tr>
+        <tr><td class="need">數位媒體整合與策略規劃提案</td><td class="have">跨國電競賽事整合提案（爐石名人邀請賽）；品牌 × 內容 × 活動的整合行銷企劃</td></tr>
+        <tr><td class="need">專案執行 / 進度掌控 / 成效追蹤</td><td class="have">統籌日港台三地跨國賽事；帶領 5 人團隊管理多條內容產線與專案時程</td></tr>
+        <tr><td class="need">提案與簡報技巧</td><td class="have">品牌贊助提案簡報、國際賽事企劃簡報；運用 AI 工具快速產出高品質提案</td></tr>
+    </table>
+
+    <div class="r-section">工作經歷</div>
+
+    <div class="r-card">
+        <div class="r-card-header">
+            <span class="r-card-title">自由接案 ｜ 數位行銷顧問 & 內容製作</span>
+            <span class="r-card-date">2022/12 — 至今</span>
+        </div>
+        <ul>
+            <li><b>網紅行銷策略（虎子 Torako Ch.）：</b>主導 VTuber 品牌定位、直播內容企劃與社群互動策略。<span class="r-metric">連續 3 年台灣 YT Super Chat Top 10</span></li>
+            <li><b>品牌客戶服務：</b>為 NEXON、ACER 等品牌規劃社群內容策略，製作創意短影片。</li>
+            <li><b>AI 輔助提案：</b>運用 Claude、Midjourney 等 AI 工具，快速產出互動式行銷內容與策略簡報，大幅提升提案效率。</li>
+        </ul>
+    </div>
+
+    <div class="r-card">
+        <div class="r-card-header">
+            <span class="r-card-title">Yahoo 電競台灣 ｜ 主編 & 社群負責人</span>
+            <span class="r-card-date">2016/12 — 2021</span>
+        </div>
+        <ul>
+            <li><b>團隊管理：</b>帶領 5 人編輯團隊，負責內容策略制定、任務分配、品質把關與績效管理。<span class="r-metric">管理 5 人團隊</span></li>
+            <li><b>品牌合作企劃：</b>負責 Monster Energy、統一巷口乾麵、肯德基、Red Bull 等品牌合作的行銷企劃與內容規劃。<span class="r-metric">品牌合作企劃</span></li>
+            <li><b>整合行銷企劃：</b>發想「新生橋鐵籠賽」等話題性行銷活動，整合線上社群與線下活動，創造品牌曝光與社群擴散。</li>
+            <li><b>跨國專案統籌：</b>統籌爐石名人邀請賽（台北花博），協調日港台三地選手、場地、贊助商，掌控全案進度與預算。</li>
+            <li><b>國際市場觀察：</b>赴 TGS 東京電玩展、英雄聯盟世界賽等國際賽事現場採訪報導，掌握產業趨勢。</li>
+        </ul>
+    </div>
+
+    <div class="r-card">
+        <div class="r-card-header">
+            <span class="r-card-title">魔方網 記者 ｜ 蕃薯藤 影音編輯</span>
+            <span class="r-card-date">2013 — 2016</span>
+        </div>
+        <ul>
+            <li>赴美採訪 GDC 遊戲開發者大會，實地參訪 Valve（Steam）總部。</li>
+            <li>數位媒體內容產製、社群平台經營、產業趨勢分析報導。</li>
+        </ul>
+    </div>
+
+    <div class="r-section">核心業務成果</div>
+    <table class="r-table">
+        <tr><td class="need" style="width:50%">品牌合作經驗</td><td class="have">Monster Energy、統一巷口乾麵、肯德基、Red Bull、NEXON、ACER、Blizzard</td></tr>
+        <tr><td class="need">網紅/KOL 合作管理</td><td class="have">虎子、虎妮（VTuber Super Chat Top 10）</td></tr>
+        <tr><td class="need">大型活動整合行銷</td><td class="have">爐石名人邀請賽（台北花博）、24 小時爐石天梯派對、新生橋鐵籠賽</td></tr>
+        <tr><td class="need">團隊管理</td><td class="have">5 人編輯團隊，負責任務分配、品質把關、績效管理</td></tr>
+    </table>
+
+    <div class="r-section">工具與技能</div>
+    <div class="r-skills">
+        <div><span class="r-skill-label">行銷專長：</span>
+            <span class="r-tag hl">品牌合作企劃</span><span class="r-tag hl">社群行銷</span><span class="r-tag hl">網紅行銷</span><span class="r-tag hl">口碑行銷</span><span class="r-tag hl">整合行銷企劃</span><span class="r-tag">策略提案簡報</span>
+        </div>
+        <div style="margin-top:5px"><span class="r-skill-label">數位平台：</span>
+            <span class="r-tag hl">YouTube</span><span class="r-tag hl">Twitch</span><span class="r-tag">Facebook</span><span class="r-tag">Instagram</span>
+        </div>
+        <div style="margin-top:5px"><span class="r-skill-label">內容製作：</span>
+            <span class="r-tag">Adobe Premiere</span><span class="r-tag">Photoshop</span><span class="r-tag">OBS</span><span class="r-tag">文案撰寫</span><span class="r-tag">腳本企劃</span>
+        </div>
+        <div style="margin-top:5px"><span class="r-skill-label">AI 工具：</span>
+            <span class="r-tag hl">Claude</span><span class="r-tag hl">Midjourney</span><span class="r-tag hl">Vibe Coding</span><span class="r-tag">Gemini</span><span class="r-tag">AI 輔助提案與內容產製</span>
+        </div>
+        <div style="margin-top:5px"><span class="r-skill-label">語言：</span>
+            <span class="r-tag">中文（母語）</span><span class="r-tag">英文（TOEIC 825）</span><span class="r-tag">台語</span>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<!-- ====================================================================
+     TAB 2: 作品集
+     ==================================================================== -->
+<div id="tab-portfolio" class="tab-content">
+<div class="page">
+
+    <div class="p-section">品牌合作 & 行銷活動</div>
+    <div class="p-grid">
+        <div class="p-card p-full">
+            <div class="type">跨國整合行銷</div>
+            <h3>Blizzard × Yahoo 電競 — 爐石戰記名人邀請賽</h3>
+            <div class="desc">與 Blizzard Entertainment 合作，於台北花博策劃跨國電競賽事。邀請日本、香港頂尖選手與實況主來台挑戰。負責賽事企劃、選手邀請協調、現場執行統籌。</div>
+            <div class="role">角色：專案統籌 / 賽事企劃</div>
+            <div class="tags"><span class="p-tag">Blizzard</span><span class="p-tag">跨國專案</span><span class="p-tag">活動企劃</span><span class="p-tag">日港台協調</span></div>
+        </div>
+        <div class="p-card">
+            <div class="type">社群活動企劃</div>
+            <h3>24 小時爐石天梯馬拉松派對</h3>
+            <div class="desc">策劃 24 小時不間斷天梯挑戰活動，結合實況主輪播與觀眾互動，在社群中創造大量自然擴散。</div>
+            <div class="role">角色：活動企劃 / 內容統籌</div>
+            <div class="tags"><span class="p-tag">口碑行銷</span><span class="p-tag">直播企劃</span></div>
+        </div>
+        <div class="p-card">
+            <div class="type">話題行銷</div>
+            <h3>新生橋鐵籠賽</h3>
+            <div class="desc">原創話題行銷企劃，將街頭格鬥文化與電競融合，打造衝突感強烈的內容事件，創造社群討論。</div>
+            <div class="role">角色：創意發想 / 企劃執行</div>
+            <div class="tags"><span class="p-tag">話題行銷</span><span class="p-tag">創意企劃</span></div>
+        </div>
+        <div class="p-card">
+            <div class="type">品牌置入企劃</div>
+            <h3>Monster Energy 贊助合作</h3>
+            <div class="desc">協助規劃 Monster Energy 在電競社群的曝光方案，結合內容置入與活動贊助。</div>
+            <div class="role">角色：企劃執行 / 內容規劃</div>
+            <div class="tags"><span class="p-tag">品牌合作</span><span class="p-tag">贊助企劃</span></div>
+        </div>
+        <div class="p-card">
+            <div class="type">品牌置入企劃</div>
+            <h3>統一巷口乾麵 合作企劃</h3>
+            <div class="desc">針對電競受眾設計社群行銷方案，規劃品牌置入內容與社群互動企劃。</div>
+            <div class="role">角色：企劃執行 / 社群行銷</div>
+            <div class="tags"><span class="p-tag">FMCG</span><span class="p-tag">社群行銷</span></div>
+        </div>
+        <div class="p-card">
+            <div class="type">品牌置入企劃</div>
+            <h3>肯德基 花生熔岩咔啦雞腿堡 置入</h3>
+            <div class="desc">規劃肯德基新品在電競內容中的品牌置入企劃，結合社群內容創造產品曝光。</div>
+            <div class="role">角色：企劃執行</div>
+            <div class="tags"><span class="p-tag">品牌置入</span><span class="p-tag">QSR</span></div>
+        </div>
+        <div class="p-card">
+            <div class="type">品牌置入企劃</div>
+            <h3>Red Bull 紅牛 置入合作</h3>
+            <div class="desc">規劃 Red Bull 在電競賽事與社群內容中的品牌置入與曝光方案。</div>
+            <div class="role">角色：企劃執行</div>
+            <div class="tags"><span class="p-tag">品牌置入</span><span class="p-tag">能量飲料</span></div>
+        </div>
+    </div>
+
+    <div class="p-section">網紅行銷 & 社群策略</div>
+    <div class="p-grid">
+        <div class="p-card p-full">
+            <div class="type">網紅行銷</div>
+            <h3>虎子 / 虎妮 Torako Ch. — 社群經營策略</h3>
+            <div class="desc">主導 VTuber 虎子與虎妮的品牌定位、直播內容企劃與社群互動策略。從角色設定、內容節奏到粉絲經營的長期策略規劃。</div>
+            <div class="result">成果：連續 3 年台灣 YouTube Super Chat Top 10</div>
+            <div class="role">角色：內容策略 / 直播腳本企劃 / 社群經營</div>
+            <div class="tags"><span class="p-tag">VTuber</span><span class="p-tag">YouTube</span><span class="p-tag">粉絲經營</span><span class="p-tag">內容策略</span></div>
+        </div>
+        <div class="p-card">
+            <div class="type">社群行銷</div>
+            <h3>Yahoo 電競台灣 — 社群從零建立</h3>
+            <div class="desc">從零建立社群平台，帶領 5 人編輯團隊。負責內容策略、多平台經營、國際賽事報導。</div>
+            <div class="result">成果：從零到穩定運營，帶領 5 人團隊</div>
+            <div class="role">角色：主編 / 社群負責人 / 團隊管理</div>
+            <div class="tags"><span class="p-tag">社群建立</span><span class="p-tag">團隊管理</span><span class="p-tag">YouTube</span><span class="p-tag">Twitch</span></div>
+        </div>
+        <div class="p-card">
+            <div class="type">國際採訪</div>
+            <h3>GDC / Valve 總部 / TGS / 英雄聯盟世界賽</h3>
+            <div class="desc">多次赴美、日進行大型遊戲展會與電競賽事現場報導。實地參訪 Valve（Steam）總部。</div>
+            <div class="role">角色：記者 / 內容統籌</div>
+            <div class="tags"><span class="p-tag">國際採訪</span><span class="p-tag">產業趨勢</span></div>
+        </div>
+    </div>
+
+    <div class="p-section">AI 輔助內容 & 產品企劃</div>
+    <div class="p-grid">
+        <div class="p-card">
+            <div class="type">AI 技術應用</div>
+            <h3>漆黑之虎 — AI VTuber 直播系統</h3>
+            <div class="desc">從零打造 AI VTuber 直播系統。整合 AI 對話引擎、語音合成、表情控制與直播串流，實現一人操控的全自動直播。</div>
+            <div class="role">角色：企劃 / 系統設計 / AI 整合</div>
+            <div class="tags"><span class="p-tag">AI 應用</span><span class="p-tag">直播技術</span><span class="p-tag">Claude</span></div>
+        </div>
+        <div class="p-card">
+            <div class="type">知識型內容</div>
+            <h3>AI 實戰完全指南 — 從入門到部署</h3>
+            <div class="desc">企劃並撰寫完整的 AI 實戰教學指南，涵蓋工具介紹、實作流程到部署。展現將複雜技術知識轉化為大眾易讀內容的能力。</div>
+            <div class="role">角色：企劃 / 內容撰寫</div>
+            <div class="tags"><span class="p-tag">知識轉譯</span><span class="p-tag">內容行銷</span><span class="p-tag">AI</span></div>
+        </div>
+        <div class="p-card">
+            <div class="type">社群內容企劃</div>
+            <h3>你的 AI 生存指數 — 互動測驗</h3>
+            <div class="desc">將 AI 趨勢議題轉化為互動測驗，設計為社群友善的分享型內容，驅動自然擴散。</div>
+            <div class="role">角色：企劃 / 內容設計</div>
+            <div class="tags"><span class="p-tag">互動內容</span><span class="p-tag">社群擴散</span></div>
+        </div>
+        <div class="p-card">
+            <div class="type">敘事內容企劃</div>
+            <h3>心理醫生的一天：生死課</h3>
+            <div class="desc">以心理諮商為主題的互動敘事內容，展現將嚴肅議題包裝為適合社群傳播內容的能力。</div>
+            <div class="role">角色：企劃 / 劇本撰寫</div>
+            <div class="tags"><span class="p-tag">敘事設計</span><span class="p-tag">社會議題</span></div>
+        </div>
+        <div class="p-card">
+            <div class="type">產品企劃</div>
+            <h3>現在吃什麼 — 美食決策 APP</h3>
+            <div class="desc">完整產品企劃，結合即時停車資訊、KOL 影音推薦與社群分享卡片。從痛點出發設計商業模式。</div>
+            <div class="role">角色：產品企劃 / UI 設計</div>
+            <div class="tags"><span class="p-tag">產品設計</span><span class="p-tag">商業模式</span></div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div class="page">
+    <div class="footer">洪任玄 Welkin Hung ｜ welkinhung7797@gmail.com ｜ 0920-423-236</div>
+</div>
+
+<script>
+function switchTab(tab) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    event.target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
