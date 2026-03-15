@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>洪任玄 — 遊戲社群行銷</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700;900&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans TC', sans-serif; background: #f7f7f5; color: #222; line-height: 1.8; }
+
+    .top-header { background: #1a1a1a; color: #fff; padding: 32px 32px 0; text-align: center; }
+    .top-header h1 { font-size: 24px; font-weight: 900; }
+    .top-header .sub { font-size: 13px; color: #aaa; margin-top: 2px; }
+    .top-header .contact { font-size: 12px; color: #666; margin-top: 8px; }
+    .tabs { display: flex; justify-content: center; gap: 0; background: #1a1a1a; padding: 20px 0 0; }
+    .tab-btn { padding: 10px 32px; font-size: 14px; font-weight: 700; border: none; background: transparent; color: #666; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; font-family: inherit; }
+    .tab-btn:hover { color: #ccc; }
+    .tab-btn.active { color: #fff; border-bottom-color: #6c5ce7; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .page { max-width: 860px; margin: 0 auto; padding: 32px 24px 60px; }
+
+    /* RESUME */
+    .r-section { background: #2d3436; color: #fff; font-size: 15px; font-weight: 700; padding: 7px 14px; margin: 24px 0 12px; border-radius: 4px; }
+    .r-summary { font-size: 14px; padding: 0 4px; }
+    .r-card { border: 1px solid #e0e0e0; border-left: 4px solid #6c5ce7; border-radius: 4px; padding: 14px 16px; margin-bottom: 14px; background: #fff; }
+    .r-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; flex-wrap: wrap; gap: 8px; }
+    .r-card-title { font-size: 15px; font-weight: 700; color: #2c3e50; }
+    .r-card-date { background: #f1f2f6; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 800; border: 1px solid #ddd; }
+    .r-metric { display: inline-block; background: #f0eeff; border: 1px solid #c8bfff; padding: 2px 10px; border-radius: 4px; font-size: 12px; color: #6c5ce7; font-weight: 600; margin: 2px; }
+    .r-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 4px; }
+    .r-table td { padding: 8px 10px; border: 1px solid #e0e0e0; vertical-align: top; }
+    .r-table tr:nth-child(odd) td { background: #f8f7ff; }
+    .r-table .need { width: 40%; font-weight: 600; color: #2c3e50; }
+    .r-table .have { color: #444; }
+    .r-skills { padding: 0 4px; }
+    .r-skill-label { font-weight: 700; font-size: 13px; margin-top: 6px; }
+    .r-tag { display: inline-block; background: #f1f2f6; border: 1px solid #dfe6e9; padding: 2px 10px; margin: 2px; border-radius: 4px; font-size: 12px; }
+    .r-tag.hl { background: #f0eeff; border-color: #c8bfff; color: #6c5ce7; font-weight: 600; }
+    ul { margin: 5px 0; padding-left: 20px; font-size: 13.5px; }
+    li { margin-bottom: 4px; }
+
+    /* PORTFOLIO */
+    .p-section { font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #999; margin: 36px 0 16px; padding-left: 4px; }
+    .p-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 640px) { .p-grid { grid-template-columns: 1fr; } }
+    .p-card { background: #fff; border: 1px solid #e8e8e6; border-radius: 12px; padding: 22px 24px; transition: transform 0.2s, box-shadow 0.2s; opacity: 0; transform: translateY(16px); animation: fadeUp 0.5s ease forwards; }
+    .p-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+    .p-card:nth-child(1){animation-delay:.05s}.p-card:nth-child(2){animation-delay:.1s}.p-card:nth-child(3){animation-delay:.15s}.p-card:nth-child(4){animation-delay:.2s}.p-card:nth-child(5){animation-delay:.25s}.p-card:nth-child(6){animation-delay:.3s}.p-card:nth-child(7){animation-delay:.35s}
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .p-full { grid-column: 1 / -1; }
+    .p-card .type { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #6c5ce7; margin-bottom: 6px; }
+    .p-card h3 { font-size: 16px; font-weight: 700; color: #111; margin-bottom: 6px; }
+    .p-card .desc { font-size: 13px; color: #555; line-height: 1.7; }
+    .p-card .result { font-size: 13px; color: #6c5ce7; font-weight: 600; margin-top: 8px; }
+    .p-card .role { font-size: 12px; color: #999; margin-top: 8px; }
+    .p-card .tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 4px; }
+    .p-tag { font-size: 10px; padding: 2px 8px; border: 1px solid #e0e0e0; border-radius: 3px; color: #777; }
+    .footer { text-align: center; font-size: 12px; color: #bbb; margin-top: 40px; padding-top: 20px; border-top: 1px solid #e8e8e6; }
+</style>
+</head>
+<body>
+
+<div class="top-header">
+    <h1>洪任玄 Welkin Hung</h1>
+    <div class="sub">遊戲社群行銷 ｜ 電競賽事企劃 ｜ 敘事設計 ｜ KOL 合作</div>
+    <div class="contact">welkinhung7797@gmail.com ｜ 0920-423-236 ｜ 新北市汐止區</div>
+</div>
+<div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('resume')">履歷</button>
+    <button class="tab-btn" onclick="switchTab('portfolio')">作品集</button>
+</div>
+
+<!-- ====================================================================
+     TAB 1: 履歷
+     ==================================================================== -->
+<div id="tab-resume" class="tab-content active">
+<div class="page">
+
+    <div class="r-section">專業摘要</div>
+    <div class="r-summary">
+        10 年以上遊戲與電競領域的社群經營與內容行銷經驗。曾任 Yahoo 電競台灣主編，<b>帶領 5 人團隊</b>從零建立社群平台，
+        負責 Blizzard 跨國賽事統籌、實況主/KOL 合作管理與品牌行銷企劃。
+        曾赴美採訪 GDC 並參訪 Valve 總部，對 Steam 平台生態有實地了解。
+        本身是 Steam 重度玩家，也關注獨立遊戲開發生態（OPUS 系列、Celeste、Hollow Knight 等）。
+        閒暇時會用 Vibe Coding 自己做小遊戲，對遊戲設計、敘事結構與玩家體驗有第一手理解。
+        具備撰寫互動敘事劇本的能力，能從玩家視角思考社群內容與行銷素材。
+    </div>
+
+    <div class="r-section">職缺需求 × 我的經驗</div>
+    <table class="r-table">
+        <tr><td class="need">社群陣地經營（FB / X / Discord / Steam）</td><td class="have">Yahoo 電競社群從零建立並長期經營（FB、YouTube、Twitch）；Steam 重度玩家，熟悉社群中心與評價機制</td></tr>
+        <tr><td class="need">上市行銷波段執行</td><td class="have">電競賽事行銷波段經驗（預熱→當日衝高→賽後延續），邏輯相同可直接轉移到遊戲上市</td></tr>
+        <tr><td class="need">KOL / 媒體聯繫與追蹤</td><td class="have">長期合作虎子、虎妮（VTuber Top 10）；協調日港台實況主與電競選手；媒體採訪經驗豐富</td></tr>
+        <tr><td class="need">素材製作與在地化</td><td class="have">Premiere 剪輯、Photoshop 修圖、OBS 直播製作；英文 TOEIC 825，多次赴日採訪，可處理中英素材轉化</td></tr>
+        <tr><td class="need">文案與創意</td><td class="have">10 年社群文案經驗，熟悉玩家語言與梗文化；獨立撰寫互動敘事劇本與遊戲企劃書</td></tr>
+        <tr><td class="need">玩家洞察與社群引導</td><td class="have">Hearthstone、Overwatch、WoW 長期玩家；關注獨立遊戲生態；理解 Steam 評價機制與玩家社群動態</td></tr>
+    </table>
+
+    <div class="r-section">工作經歷</div>
+
+    <div class="r-card">
+        <div class="r-card-header">
+            <span class="r-card-title">自由接案 ｜ 遊戲社群顧問 & 內容製作</span>
+            <span class="r-card-date">2022/12 — 至今</span>
+        </div>
+        <ul>
+            <li><b>VTuber 社群策略（虎子 Torako Ch.）：</b>主導品牌定位、直播腳本企劃與社群互動策略。<span class="r-metric">連續 3 年台灣 YT Super Chat Top 10</span></li>
+            <li><b>品牌合作：</b>為 NEXON、ACER 等遊戲/科技品牌規劃社群內容策略與創意影片。</li>
+            <li><b>敘事內容創作：</b>獨立企劃並撰寫多部劇本與互動敘事作品（詳見作品集）。</li>
+            <li><b>遊戲原型開發：</b>運用 AI + Vibe Coding 獨立製作遊戲原型與互動內容 demo。</li>
+        </ul>
+    </div>
+
+    <div class="r-card">
+        <div class="r-card-header">
+            <span class="r-card-title">Yahoo 電競台灣 ｜ 主編 & 社群負責人</span>
+            <span class="r-card-date">2016/12 — 2021</span>
+        </div>
+        <ul>
+            <li><b>團隊管理：</b>帶領 5 人編輯團隊，負責遊戲/電競內容策略、任務分配與品質把關。<span class="r-metric">管理 5 人團隊</span></li>
+            <li><b>Blizzard 合作：</b>統籌爐石名人邀請賽（台北花博），協調日港台選手與實況主跨區挑戰。<span class="r-metric">跨國賽事統籌</span></li>
+            <li><b>KOL/實況主合作：</b>長期聯繫與管理遊戲實況主合作，規劃內容曝光與活動參與。</li>
+            <li><b>品牌行銷企劃：</b>Monster Energy、肯德基、Red Bull 等品牌在電競社群的置入企劃。</li>
+            <li><b>話題行銷：</b>發想「新生橋鐵籠賽」、24 小時天梯馬拉松等話題性社群活動。</li>
+            <li><b>國際採訪：</b>TGS 東京電玩展、英雄聯盟世界賽現場報導。</li>
+        </ul>
+    </div>
+
+    <div class="r-card">
+        <div class="r-card-header">
+            <span class="r-card-title">魔方網 遊戲記者 ｜ 蕃薯藤 影音編輯</span>
+            <span class="r-card-date">2013 — 2016</span>
+        </div>
+        <ul>
+            <li><b>赴美採訪 GDC</b>遊戲開發者大會，<b>實地參訪 Valve（Steam）總部</b>。</li>
+            <li>遊戲產業深度報導、影音內容製作、社群平台經營。</li>
+        </ul>
+    </div>
+
+    <div class="r-section">工具與技能</div>
+    <div class="r-skills">
+        <div><span class="r-skill-label">社群平台：</span>
+            <span class="r-tag hl">Facebook</span><span class="r-tag hl">X (Twitter)</span><span class="r-tag hl">Discord</span><span class="r-tag hl">Steam Community</span><span class="r-tag hl">YouTube</span><span class="r-tag hl">Twitch</span>
+        </div>
+        <div style="margin-top:5px"><span class="r-skill-label">內容製作：</span>
+            <span class="r-tag">Adobe Premiere</span><span class="r-tag">Photoshop</span><span class="r-tag">OBS</span><span class="r-tag">文案撰寫</span><span class="r-tag">劇本企劃</span><span class="r-tag">社群排程工具</span>
+        </div>
+        <div style="margin-top:5px"><span class="r-skill-label">AI & 開發：</span>
+            <span class="r-tag hl">Claude</span><span class="r-tag hl">Vibe Coding</span><span class="r-tag">Midjourney</span><span class="r-tag">Gemini</span>
+        </div>
+        <div style="margin-top:5px"><span class="r-skill-label">遊戲經歷：</span>
+            <span class="r-tag hl">Steam 重度玩家</span><span class="r-tag hl">獨立遊戲愛好者</span><span class="r-tag">Hearthstone</span><span class="r-tag">Overwatch</span><span class="r-tag">World of Warcraft</span>
+        </div>
+        <div style="margin-top:5px"><span class="r-skill-label">語言：</span>
+            <span class="r-tag">中文（母語）</span><span class="r-tag">英文（TOEIC 825）</span><span class="r-tag">台語</span>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<!-- ====================================================================
+     TAB 2: 作品集
+     ==================================================================== -->
+<div id="tab-portfolio" class="tab-content">
+<div class="page">
+
+    <div class="p-section">遊戲社群行銷 & 賽事企劃</div>
+    <div class="p-grid">
+        <div class="p-card p-full">
+            <div class="type">跨國賽事行銷</div>
+            <h3>Blizzard × Yahoo 電競 — 爐石戰記名人邀請賽</h3>
+            <div class="desc">與 Blizzard 合作於台北花博策劃跨國電競賽事。邀請日本、香港選手與實況主來台挑戰。負責全案統籌：賽事企劃、選手邀請、現場執行、社群預熱與賽後擴散。</div>
+            <div class="role">角色：專案統籌 / 賽事企劃</div>
+            <div class="tags"><span class="p-tag">Blizzard</span><span class="p-tag">跨國專案</span><span class="p-tag">上市波段行銷</span></div>
+        </div>
+        <div class="p-card">
+            <div class="type">社群活動</div>
+            <h3>24 小時爐石天梯馬拉松</h3>
+            <div class="desc">24 小時不間斷天梯挑戰，結合實況主輪播與觀眾互動，創造社群自然擴散。</div>
+            <div class="role">角色：活動企劃 / 內容統籌</div>
+            <div class="tags"><span class="p-tag">口碑行銷</span><span class="p-tag">直播企劃</span></div>
+        </div>
+        <div class="p-card">
+            <div class="type">話題行銷</div>
+            <h3>新生橋鐵籠賽</h3>
+            <div class="desc">原創話題行銷，將街頭格鬥文化與電競融合，創造社群討論與媒體報導。</div>
+            <div class="role">角色：創意發想 / 企劃執行</div>
+            <div class="tags"><span class="p-tag">話題行銷</span><span class="p-tag">社群擴散</span></div>
+        </div>
+        <div class="p-card p-full">
+            <div class="type">KOL 經營</div>
+            <h3>虎子 / 虎妮 Torako Ch. — 社群經營策略</h3>
+            <div class="desc">主導 VTuber 品牌定位、直播內容企劃與社群互動策略。從角色設定、內容節奏到粉絲經營的長期規劃。</div>
+            <div class="result">成果：連續 3 年台灣 YouTube Super Chat Top 10</div>
+            <div class="role">角色：內容策略 / 直播腳本企劃 / 社群經營</div>
+            <div class="tags"><span class="p-tag">VTuber</span><span class="p-tag">YouTube</span><span class="p-tag">KOL 管理</span></div>
+        </div>
+        <div class="p-card">
+            <div class="type">國際採訪</div>
+            <h3>GDC / Valve 總部 / TGS / LoL Worlds</h3>
+            <div class="desc">多次赴美、日採訪大型遊戲展會與電競賽事。實地參訪 Valve（Steam）總部，了解平台生態與社群機制。</div>
+            <div class="role">角色：記者 / 內容統籌</div>
+            <div class="tags"><span class="p-tag">Steam</span><span class="p-tag">GDC</span><span class="p-tag">國際市場</span></div>
+        </div>
+    </div>
+
+    <div class="p-section">敘事設計 & 劇本</div>
+    <div class="p-grid">
+        <div class="p-card">
+            <div class="type">互動敘事</div>
+            <h3>心理醫生的一天：生死課</h3>
+            <div class="desc">互動式敘事體驗。玩家扮演心理諮商師，透過對話選擇探索生死議題。設計了筆記系統影響劇情走向，展現分支敘事設計能力。</div>
+            <div class="role">角色：企劃 / 劇本撰寫</div>
+            <div class="tags"><span class="p-tag">互動敘事</span><span class="p-tag">分支劇本</span><span class="p-tag">角色設計</span></div>
+        </div>
+        <div class="p-card">
+            <div class="type">科幻電影劇本</div>
+            <h3>台北地下：遺忘演習</h3>
+            <div class="desc">科幻驚悚長片劇本。四十個失憶者被困在地下以為末日來臨，直到一通垃圾電話戳破謊言。完整 Story Bible 含角色、關係圖、場景地圖、時間軸。</div>
+            <div class="role">角色：編劇 / 世界觀建構</div>
+            <div class="tags"><span class="p-tag">長片劇本</span><span class="p-tag">科幻</span><span class="p-tag">世界觀</span></div>
+        </div>
+        <div class="p-card">
+            <div class="type">犯罪懸疑劇本</div>
+            <h3>偽神的方舟</h3>
+            <div class="desc">台東山間邪教組織中，被當作「奇蹟之子」的林安發現殺死父母的兇手，是唯一想救他的人。完整五幕劇本與 Story Bible。</div>
+            <div class="role">角色：編劇 / 角色弧線設計</div>
+            <div class="tags"><span class="p-tag">犯罪懸疑</span><span class="p-tag">心理劇情</span><span class="p-tag">角色弧線</span></div>
+        </div>
+        <div class="p-card">
+            <div class="type">廣告腳本</div>
+            <h3>年夜飯（75 秒短片）</h3>
+            <div class="desc">「年年有位，歲歲有味。」用同一張圓桌的年夜飯、五個時期，透過誰坐在桌邊、誰的位子空了，具象化家族流轉。含分鏡與角色表。</div>
+            <div class="role">角色：編劇 / 分鏡設計</div>
+            <div class="tags"><span class="p-tag">短片腳本</span><span class="p-tag">情感敘事</span><span class="p-tag">分鏡</span></div>
+        </div>
+    </div>
+
+    <div class="p-section">遊戲企劃 & AI 應用</div>
+    <div class="p-grid">
+        <div class="p-card">
+            <div class="type">遊戲企劃</div>
+            <h3>紙片物理大對決</h3>
+            <div class="desc">結合 UGC 手繪與物理引擎的競技遊戲。玩家手繪角色，系統即時分析像素分布計算重心與碰撞。具備完整企劃書含市場分析、風險評估、社群傳播策略。</div>
+            <div class="role">角色：遊戲企劃 / Vibe Coding 開發</div>
+            <div class="tags"><span class="p-tag">遊戲企劃</span><span class="p-tag">UGC</span><span class="p-tag">物理引擎</span><span class="p-tag">實況主潛力</span></div>
+        </div>
+        <div class="p-card">
+            <div class="type">遊戲企劃</div>
+            <h3>Cyber-Penguin：零度排斥</h3>
+            <div class="desc">賽博龐克俯視角射擊 + 自走棋。核心設計：Perfect Parry 與 Active Reload 微操系統，解決同類遊戲後期掛機問題。完整規格書含數值邏輯與商業模式。</div>
+            <div class="role">角色：遊戲企劃 / 系統設計</div>
+            <div class="tags"><span class="p-tag">遊戲企劃</span><span class="p-tag">數值設計</span><span class="p-tag">Survivor-like</span></div>
+        </div>
+        <div class="p-card">
+            <div class="type">遊戲企劃</div>
+            <h3>Food Fighter Arena</h3>
+            <div class="desc">ASCII 風格食物格鬥遊戲。用最少視覺素材創造最大趣味性，即開即玩，適合社群分享與實況主遊玩。</div>
+            <div class="role">角色：遊戲企劃 / Vibe Coding 開發</div>
+            <div class="tags"><span class="p-tag">小品遊戲</span><span class="p-tag">社群傳播</span></div>
+        </div>
+        <div class="p-card">
+            <div class="type">AI 技術應用</div>
+            <h3>漆黑之虎 — AI VTuber 直播系統</h3>
+            <div class="desc">從零打造 AI VTuber 直播系統。整合 Claude AI 對話引擎、GPT-SoVITS 語音合成、VTube Studio 表情控制與 Discord 語音橋接。</div>
+            <div class="role">角色：企劃 / 系統設計 / AI 整合</div>
+            <div class="tags"><span class="p-tag">AI 應用</span><span class="p-tag">直播技術</span><span class="p-tag">VTuber</span></div>
+        </div>
+        <div class="p-card">
+            <div class="type">社群內容</div>
+            <h3>你的 AI 生存指數 — 互動測驗</h3>
+            <div class="desc">將 AI 趨勢議題轉化為社群友善的互動測驗，設計可截圖分享的結果卡片驅動自然擴散。</div>
+            <div class="role">角色：企劃 / 內容設計</div>
+            <div class="tags"><span class="p-tag">互動內容</span><span class="p-tag">社群擴散</span></div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div class="page">
+    <div class="footer">洪任玄 Welkin Hung ｜ welkinhung7797@gmail.com ｜ 0920-423-236</div>
+</div>
+
+<script>
+function switchTab(tab) {
+    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    event.target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
